@@ -3,26 +3,21 @@
  */
 "use strict";
 
-var fileInput = document.getElementById('fileInput');
-var fileDisplayArea = document.getElementById('fileDisplayArea');
+var data = data_js;
+var seen = [];
 
-fileInput.addEventListener('change', function(e) {
-    var file = fileInput.files[0];
-    var textType = /text.*/;
+for(var i in data){
+    if(seen.indexOf(i) != -1 || data[i].dependsOn != undefined)continue;
 
-        var reader = new FileReader();
+    seen.push(i);
 
-        reader.onload = function(e) {
-            var content = reader.result;
-            var lines = content.split(/\r|\n/);
-            for (var i in lines){
-                var line = lines[i].substring(0, lines[i].indexOf('#'));
-                line = line.split(/(\{|\[)/);
-                console.log(line);
-            }
-
-
+    if(data[i].affects != undefined) {
+        for (var a in data[i].affects){
+            if(seen.indexOf(data[i].affects[a]) == -1)
+                seen.push(data[i].affects[a]);
         }
+    }
 
-        reader.readAsText(file);
-});
+}
+
+console.log(seen, seen.length);
