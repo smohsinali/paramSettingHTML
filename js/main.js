@@ -171,8 +171,14 @@ function findVars(obj) {
 
 var seen = findVars(data);
 
-for(var s in seen){
-    var tmp = "#" + seen[s];
-    if($(tmp).is(':disabled') == false)
-    console.log(seen[s], ":", $(tmp).val());
+function generate_params() {
+    //var seen = findVars(data);
+    var result=[];
+    for (var s in seen) {
+        var tmp = "#" + seen[s];
+        if ($(tmp).is(':disabled') == false)
+            console.log(seen[s], ":", $(tmp).val());
+            result.push(seen[s], ":", $(tmp).val());
+    }
+    alert(result);
 }
