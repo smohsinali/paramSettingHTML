@@ -26,7 +26,9 @@ var data_js = {
             {
                 "sp-learned-clause-sort-heur": {
                     "type": "categorical",
-                    "values": "19"
+                    "values": [
+                        "19"
+                    ]
                 }
             }
         ],
@@ -320,10 +322,10 @@ var data_js = {
     },
     "sp-resolution": {
         "affects": [
-            "sp-res-cutoff-lits",
-            "sp-max-res-lit-inc",
-            "sp-max-res-runs",
             "sp-res-order-heur",
+            "sp-max-res-runs",
+            "sp-max-res-lit-inc",
+            "sp-res-cutoff-lits",
             "sp-res-cutoff-cls"
         ],
         "type": "categrical",
@@ -393,4 +395,4 @@ var data_js = {
         ],
         "type": "continuous"
     }
-};
+}
