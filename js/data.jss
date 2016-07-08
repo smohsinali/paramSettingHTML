@@ -1,7 +1,5 @@
 var data_js = {
     "sp-clause-activity-inc": {
-        "default": 1.0,
-        "log-scale": "False",
         "range": [
             0.5,
             1.5
@@ -9,16 +7,13 @@ var data_js = {
         "type": "continuous"
     },
     "sp-clause-decay": {
-        "default": 0.34,
-        "log-scale": "True",
         "range": [
-            0.0,
-            0.69
+            1.0,
+            2.0
         ],
         "type": "continuous"
     },
     "sp-clause-del-heur": {
-        "default": "2",
         "type": "categrical",
         "values": [
             "0",
@@ -27,14 +22,11 @@ var data_js = {
         ]
     },
     "sp-clause-inversion": {
-        "default": "1",
         "dependsOn": [
             {
                 "sp-learned-clause-sort-heur": {
                     "type": "categorical",
-                    "values": [
-                        "19"
-                    ]
+                    "values": "19"
                 }
             }
         ],
@@ -45,11 +37,9 @@ var data_js = {
         ]
     },
     "sp-first-restart": {
-        "default": 4.61,
-        "log-scale": "True",
         "range": [
-            3.22,
-            8.07
+            25.0,
+            3200.0
         ],
         "type": "continuous"
     },
@@ -57,7 +47,6 @@ var data_js = {
         "affects": [
             "sp-clause-inversion"
         ],
-        "default": "0",
         "type": "categrical",
         "values": [
             "0",
@@ -83,8 +72,6 @@ var data_js = {
         ]
     },
     "sp-learned-clauses-inc": {
-        "default": 1.3,
-        "log-scale": "False",
         "range": [
             1.1,
             1.5
@@ -92,16 +79,13 @@ var data_js = {
         "type": "continuous"
     },
     "sp-learned-size-factor": {
-        "default": -0.92,
-        "log-scale": "True",
         "range": [
-            -2.3,
-            0.47
+            0.1,
+            1.6
         ],
         "type": "continuous"
     },
     "sp-max-res-lit-inc": {
-        "default": 0.0,
         "dependsOn": [
             {
                 "sp-resolution": {
@@ -113,15 +97,13 @@ var data_js = {
                 }
             }
         ],
-        "log-scale": "True",
         "range": [
-            -1.39,
-            1.39
+            0.25,
+            4.0
         ],
         "type": "continuous"
     },
     "sp-max-res-runs": {
-        "default": 1.39,
         "dependsOn": [
             {
                 "sp-resolution": {
@@ -133,15 +115,13 @@ var data_js = {
                 }
             }
         ],
-        "log-scale": "True",
         "range": [
-            0.0,
-            3.47
+            1.0,
+            32.0
         ],
         "type": "continuous"
     },
     "sp-orig-clause-sort-heur": {
-        "default": "0",
         "type": "categrical",
         "values": [
             "0",
@@ -170,7 +150,6 @@ var data_js = {
         "affects": [
             "sp-rand-phase-dec-freq"
         ],
-        "default": "5",
         "type": "categrical",
         "values": [
             "0",
@@ -186,7 +165,6 @@ var data_js = {
         "affects": [
             "sp-rand-phase-scaling"
         ],
-        "default": "0.001",
         "dependsOn": [
             {
                 "sp-phase-dec-heur": {
@@ -213,7 +191,6 @@ var data_js = {
         ]
     },
     "sp-rand-phase-scaling": {
-        "default": 1.0,
         "dependsOn": [
             {
                 "sp-rand-phase-dec-freq": {
@@ -228,7 +205,6 @@ var data_js = {
                 }
             }
         ],
-        "log-scale": "False",
         "range": [
             0.3,
             1.1
@@ -239,7 +215,6 @@ var data_js = {
         "affects": [
             "sp-rand-var-dec-scaling"
         ],
-        "default": "0.001",
         "type": "categrical",
         "values": [
             "0",
@@ -251,7 +226,6 @@ var data_js = {
         ]
     },
     "sp-rand-var-dec-scaling": {
-        "default": 1.0,
         "dependsOn": [
             {
                 "sp-rand-var-dec-freq": {
@@ -266,7 +240,6 @@ var data_js = {
                 }
             }
         ],
-        "log-scale": "False",
         "range": [
             0.3,
             1.1
@@ -274,7 +247,6 @@ var data_js = {
         "type": "continuous"
     },
     "sp-res-cutoff-cls": {
-        "default": 2.08,
         "dependsOn": [
             {
                 "sp-resolution": {
@@ -286,15 +258,13 @@ var data_js = {
                 }
             }
         ],
-        "log-scale": "True",
         "range": [
-            0.69,
-            3.0
+            2.0,
+            20.0
         ],
         "type": "continuous"
     },
     "sp-res-cutoff-lits": {
-        "default": 5.99,
         "dependsOn": [
             {
                 "sp-resolution": {
@@ -306,15 +276,13 @@ var data_js = {
                 }
             }
         ],
-        "log-scale": "True",
         "range": [
-            4.61,
-            7.38
+            100.0,
+            1600.0
         ],
         "type": "continuous"
     },
     "sp-res-order-heur": {
-        "default": "0",
         "dependsOn": [
             {
                 "sp-resolution": {
@@ -352,13 +320,12 @@ var data_js = {
     },
     "sp-resolution": {
         "affects": [
-            "sp-max-res-lit-inc",
             "sp-res-cutoff-lits",
+            "sp-max-res-lit-inc",
             "sp-max-res-runs",
             "sp-res-order-heur",
             "sp-res-cutoff-cls"
         ],
-        "default": "0",
         "type": "categrical",
         "values": [
             "0",
@@ -367,8 +334,6 @@ var data_js = {
         ]
     },
     "sp-restart-inc": {
-        "default": 1.5,
-        "log-scale": "False",
         "range": [
             1.1,
             1.9
@@ -376,7 +341,6 @@ var data_js = {
         "type": "continuous"
     },
     "sp-update-dec-queue": {
-        "default": "1",
         "type": "categrical",
         "values": [
             "0",
@@ -384,7 +348,6 @@ var data_js = {
         ]
     },
     "sp-use-pure-literal-rule": {
-        "default": "1",
         "type": "categrical",
         "values": [
             "0",
@@ -392,8 +355,6 @@ var data_js = {
         ]
     },
     "sp-var-activity-inc": {
-        "default": 1.0,
-        "log-scale": "False",
         "range": [
             0.5,
             1.5
@@ -401,7 +362,6 @@ var data_js = {
         "type": "continuous"
     },
     "sp-var-dec-heur": {
-        "default": "0",
         "type": "categrical",
         "values": [
             "0",
@@ -427,12 +387,10 @@ var data_js = {
         ]
     },
     "sp-variable-decay": {
-        "default": 0.34,
-        "log-scale": "True",
         "range": [
-            0.0,
-            0.69
+            1.0,
+            2.0
         ],
         "type": "continuous"
     }
-}
+};

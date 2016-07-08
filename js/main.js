@@ -9,16 +9,19 @@ function buildContinuous(obj, curr_obj) {
     var depOn = obj[curr_obj].dependsOn != undefined ? obj[curr_obj].dependsOn[0] : null;
     //console.log("building continuous var", curr_obj, "depon", depOn);
 
-    var elem = $("<div></div>");
-    var name_div = $("<div>" + curr_obj + "</div>").css({"display": "inline"});
-    elem.append(name_div);
+    var elem = $("<div></div>").text(String(curr_obj));
+    //var name_div = $("<div>" + curr_obj + "</div>").css({"display": "inline"});
+    //elem.append(name_div);
 
     var ranges_div = $("<div></div>").css({"display": "inline"});
     var curr_val_div = $("<div></div>").css({"display": "inline"});
+    var info_div = $("<a href='#'></a>").css({"display": "inline"});
 
 
     var min = obj[curr_obj].range[0];
     var max = obj[curr_obj].range[1];
+    var defaultVal = obj[curr_obj].default;
+
 
     var slider = $('<input>').attr({
         id: curr_obj,
@@ -27,6 +30,8 @@ function buildContinuous(obj, curr_obj) {
         max: max,
         step: (max - min) / 100
     }).appendTo(ranges_div);
+
+    slider.val(defaultVal);
     slider.on("change", function () {
         curr_val_div.text(slider.val());
     });
@@ -35,8 +40,26 @@ function buildContinuous(obj, curr_obj) {
         curr_val_div.text(slider.val());
     });
     curr_val_div.text(slider.val());
+
+    var info_img = $('<img></img>').attr({
+        src: 'info.png',
+        width: '20px',
+        'vertical-align': 'text-bottom'
+    }).appendTo(info_div);
+
+    info_img.on("mouseenter", function(){
+        if(info[curr_obj] == undefined){
+            //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
+            info_div.attr('title', "No info available for this variable");
+        }
+        else{
+            info_div.attr('title', info[curr_obj]);
+        }
+    });
+
     elem.append(ranges_div);
     elem.append(curr_val_div);
+    elem.append(info_div);
 
     if(depOn != null){
         disableCategorical(slider, depOn);
@@ -51,11 +74,13 @@ function buildCategorical(obj, curr_obj) {
     var affected = obj[curr_obj].affects != undefined ? obj[curr_obj].affects : null;
     //console.log(curr_obj, "affects", affected);
 
-    var elem = $("<div></div>");
-    var name_div = $("<div>" + curr_obj + "</div>").css({"display": "inline"});
-    elem.append(name_div);
+    var elem = $("<div></div>").text(String(curr_obj));
+    //var name_div = $("<div>" + curr_obj + "</div>").css({"display": "inline"});
+    //elem.append(name_div);
 
     var vals_div = $("<div></div>").css({"display": "inline"});
+    var info_div = $("<a href='#'></a>").css({"display": "inline"});
+
     var combo = $("<select></select>").attr({
         id: curr_obj
     });
@@ -65,6 +90,11 @@ function buildCategorical(obj, curr_obj) {
         combo.append("<option>" + el + "</option>");
 
     });
+
+
+    var defaultVal = obj[curr_obj].default;
+    combo.val(defaultVal);
+
     vals_div.append(combo);
     elem.append(vals_div);
 
@@ -75,11 +105,27 @@ function buildCategorical(obj, curr_obj) {
         }
     });
 
+    var info_img = $('<img></img>').attr({
+        src: 'info.png',
+        width: '20px',
+        'vertical-align': 'text-bottom'
+    }).appendTo(info_div);
+
+    info_img.on("mouseenter", function(){
+        if(info[curr_obj] == undefined){
+            //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
+            info_div.attr('title', "No info available for this variable");
+        }
+        else{
+            info_div.attr('title', info[curr_obj]);
+        }
+    });
+
+    elem.append(info_div);
+
     if (depOn != null) {
         disableCategorical(combo, depOn);
     }
-
-
 
     return elem;
 }
@@ -91,9 +137,11 @@ function comboChng(obj, curr_obj, affected, value){
 
         if(parent_vals.indexOf(value) != -1){
             $(tmp).prop('disabled', false);
+            $(tmp).parent().parent().css('color', 'black');
         }
         else{
             $(tmp).prop('disabled', true);
+            $(tmp).parent().parent().css('color', 'lightgray');
         }
     }
 
@@ -102,8 +150,9 @@ function comboChng(obj, curr_obj, affected, value){
 
 function disableCategorical(combo, depOn) {
     for (var d in depOn) {
-            if (depOn[d].values.indexOf($(combo).val()) == -1) {
+            if (depOn[d].values.indexOf($('#'+d).val()) == -1) {
                 combo.prop('disabled', true);
+                combo.parent().parent().css('color', 'lightgrey');
             }
     }
 }
