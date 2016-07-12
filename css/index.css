@@ -1,3 +1,17 @@
-/*div:disabled {*/
-    /*background: #dddddd;*/
-/*}*/
+.varaible {
+    padding: 5px;
+    height: 24px;
+}
+
+.varName {
+    width: 500px;
+}
+
+.varInfo {
+    vertical-align: top;
+    margin-left: 10px;
+}
+
+.varSelect{
+
+}

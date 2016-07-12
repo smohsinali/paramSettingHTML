@@ -9,37 +9,52 @@ function buildContinuous(obj, curr_obj) {
     var depOn = obj[curr_obj].dependsOn != undefined ? obj[curr_obj].dependsOn[0] : null;
     //console.log("building continuous var", curr_obj, "depon", depOn);
 
-    var elem = $("<div></div>").text(String(curr_obj));
-    //var name_div = $("<div>" + curr_obj + "</div>").css({"display": "inline"});
-    //elem.append(name_div);
+    var elem = $("<div class='varaible'></div>");
+    var name_div = $("<div class='varName'>" + curr_obj + "</div>").css({"display": "inline-block"});
+    elem.append(name_div);
 
-    var ranges_div = $("<div></div>").css({"display": "inline"});
-    var curr_val_div = $("<div></div>").css({"display": "inline"});
-    var info_div = $("<a href='#'></a>").css({"display": "inline"});
+    var ranges_div = $("<div class='varSelect'></div>").css({"display": "inline-block"});
+    var curr_val_div = $("<div class='varVal'></div>").css({"display": "inline-block"});
+    var info_div = $("<a class='varInfo' href='#'></a>").css({"display": "inline-block"});
+
+    var min = obj[curr_obj]['log-scale'] == 'true' ? Math.log10(obj[curr_obj].range[0]) : obj[curr_obj].range[0];
+    var max = obj[curr_obj]['log-scale'] == 'true' ? Math.log10(obj[curr_obj].range[1]) : obj[curr_obj].range[1];
+    var defaultVal = obj[curr_obj]['log-scale'] == 'true' ? Math.log10(obj[curr_obj].default) : obj[curr_obj].default;
+    var step = (max-min) / 100.000;
+
+    var tf = 2;
+    min = min.toFixed(tf);
+    max = max.toFixed(tf);
+    //step = step.toFixed(tf+2);
+    defaultVal = defaultVal.toFixed(tf);
 
 
-    var min = obj[curr_obj].range[0];
-    var max = obj[curr_obj].range[1];
-    var defaultVal = obj[curr_obj].default;
-
+    //var min = obj[curr_obj].range[0];
+    //var max = obj[curr_obj].range[1];
+    //var defaultVal = obj[curr_obj].default;
 
     var slider = $('<input>').attr({
         id: curr_obj,
         type: 'range',
         min: min,
         max: max,
-        step: (max - min) / 100
+        step: step
     }).appendTo(ranges_div);
 
     slider.val(defaultVal);
+
     slider.on("change", function () {
-        curr_val_div.text(slider.val());
+        var sv = parseFloat(slider.val());
+        curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
     });
+
     slider.on("input", function () {
-        console.log("slider val changed");
-        curr_val_div.text(slider.val());
+        var sv = parseFloat(slider.val());
+        curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
     });
-    curr_val_div.text(slider.val());
+
+    var sv = parseFloat(slider.val());
+    curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
 
     var info_img = $('<img></img>').attr({
         src: 'info.png',
@@ -48,12 +63,25 @@ function buildContinuous(obj, curr_obj) {
     }).appendTo(info_div);
 
     info_img.on("mouseenter", function(){
-        if(info[curr_obj] == undefined){
-            //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
-            info_div.attr('title', "No info available for this variable");
+        if(depOn == null) {
+            var text = 'This variable does not depend on any other variable.';
         }
         else{
-            info_div.attr('title', info[curr_obj]);
+            var text = '';
+            Object.keys(depOn).forEach(function(x){text = x + ' in [' + depOn[x]["values"] +']';});
+            text = 'This variable active if ' + text;
+
+        }
+        if(info[curr_obj] == undefined){
+            //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
+            if(depOn == null) depOn='This variable does not depend on any other variable.';
+            var title = 'No info available for this variable \n\n' + text;
+            info_div.attr('title', title);
+        }
+        else{
+            if(depOn == null) depOn='This variable does not depend on any other variable.';
+            var title = info[curr_obj] + '\n\n' + text;
+            info_div.attr('title', title);
         }
     });
 
@@ -74,14 +102,14 @@ function buildCategorical(obj, curr_obj) {
     var affected = obj[curr_obj].affects != undefined ? obj[curr_obj].affects : null;
     //console.log(curr_obj, "affects", affected);
 
-    var elem = $("<div></div>").text(String(curr_obj));
-    //var name_div = $("<div>" + curr_obj + "</div>").css({"display": "inline"});
-    //elem.append(name_div);
+    var elem = $("<div class='varaible'></div>");
+    var name_div = $("<div class='varName'>" + curr_obj + "</div>").css({"display": "inline-block"});
+    elem.append(name_div);
 
-    var vals_div = $("<div></div>").css({"display": "inline"});
-    var info_div = $("<a href='#'></a>").css({"display": "inline"});
+    var vals_div = $("<div class='varSelect'></div>").css({"display": "inline-block"});
+    var info_div = $("<a class='varInfo' href='#'></a>").css({"display": "inline-block"});
 
-    var combo = $("<select></select>").attr({
+    var combo = $("<select ></select>").attr({
         id: curr_obj
     });
 
@@ -112,12 +140,25 @@ function buildCategorical(obj, curr_obj) {
     }).appendTo(info_div);
 
     info_img.on("mouseenter", function(){
-        if(info[curr_obj] == undefined){
-            //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
-            info_div.attr('title', "No info available for this variable");
+        if(depOn == null) {
+            var text = 'This variable does not depend on any other variable.';
         }
         else{
-            info_div.attr('title', info[curr_obj]);
+            var text = '';
+            Object.keys(depOn).forEach(function(x){text = x + ' in [' + depOn[x]["values"] +']';});
+            text = 'This variable active if ' + text;
+
+        }
+        if(info[curr_obj] == undefined){
+            //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
+            if(depOn == null) depOn='This variable does not depend on any other variable.';
+            var title = 'No info available for this variable \n\n' + text;
+            info_div.attr('title', title);
+        }
+        else{
+            if(depOn == null) depOn='This variable does not depend on any other variable.';
+            var title = info[curr_obj] + '\n\n' + text;
+            info_div.attr('title', title);
         }
     });
 
@@ -133,15 +174,15 @@ function buildCategorical(obj, curr_obj) {
 function comboChng(obj, curr_obj, affected, value){
     for(var a in affected){
         var parent_vals = obj[affected[a]].dependsOn[0][curr_obj].values;
-        var tmp = "#" + affected[a];
+        var tmp = affected[a];
 
         if(parent_vals.indexOf(value) != -1){
-            $(tmp).prop('disabled', false);
-            $(tmp).parent().parent().css('color', 'black');
+            $(document.getElementById(tmp)).prop('disabled', false);
+            $(document.getElementById(tmp)).parent().parent().css('color', 'black');
         }
         else{
-            $(tmp).prop('disabled', true);
-            $(tmp).parent().parent().css('color', 'lightgray');
+            $(document.getElementById(tmp)).prop('disabled', true);
+            $(document.getElementById(tmp)).parent().parent().css('color', 'lightgray');
         }
     }
 
@@ -150,7 +191,9 @@ function comboChng(obj, curr_obj, affected, value){
 
 function disableCategorical(combo, depOn) {
     for (var d in depOn) {
-            if (depOn[d].values.indexOf($('#'+d).val()) == -1) {
+        var tmp = d;
+
+            if (depOn[d].values.indexOf($(document.getElementById(tmp)).val()) == -1) {
                 combo.prop('disabled', true);
                 combo.parent().parent().css('color', 'lightgrey');
             }
@@ -220,14 +263,19 @@ function findVars(obj) {
 
 var seen = findVars(data);
 
+
 function generate_params() {
     //var seen = findVars(data);
-    var result=[];
+    var result={};
     for (var s in seen) {
-        var tmp = "#" + seen[s];
-        if ($(tmp).is(':disabled') == false)
-            console.log(seen[s], ":", $(tmp).val());
-            result.push(seen[s], ":", $(tmp).val());
+        var tmp = seen[s];
+        if ($(document.getElementById(tmp)).is(':disabled') == false) {
+            console.log(seen[s], ":", $(document.getElementById(tmp)).val());
+            result[seen[s]] = $(document.getElementById(tmp)).val();
+        }
     }
-    alert(result);
+    //result = JSON.parse(result);
+    //JSON.stringify(result ,'\#t');
+// console.log(JSON.stringify(result, null, '\n'));
+    alert(JSON.stringify(result));
 }
