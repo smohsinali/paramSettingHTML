@@ -89,6 +89,7 @@ function buildContinuous(obj, curr_obj) {
     elem.append(curr_val_div);
     elem.append(info_div);
 
+
     if(depOn != null){
         disableCategorical(slider, depOn);
     }
@@ -118,6 +119,8 @@ function buildCategorical(obj, curr_obj) {
         combo.append("<option>" + el + "</option>");
 
     });
+
+    console.log(curr_obj, obj[curr_obj].values.length);
 
 
     var defaultVal = obj[curr_obj].default;
@@ -168,6 +171,9 @@ function buildCategorical(obj, curr_obj) {
         disableCategorical(combo, depOn);
     }
 
+    if(obj[curr_obj].values.length == 1){
+        elem.hide();
+    }
     return elem;
 }
 
@@ -179,10 +185,12 @@ function comboChng(obj, curr_obj, affected, value){
         if(parent_vals.indexOf(value) != -1){
             $(document.getElementById(tmp)).prop('disabled', false);
             $(document.getElementById(tmp)).parent().parent().css('color', 'black');
+            $(document.getElementById(tmp)).parent().parent().show();
         }
         else{
             $(document.getElementById(tmp)).prop('disabled', true);
             $(document.getElementById(tmp)).parent().parent().css('color', 'lightgray');
+            $(document.getElementById(tmp)).parent().parent().hide();
         }
     }
 
@@ -196,6 +204,7 @@ function disableCategorical(combo, depOn) {
             if (depOn[d].values.indexOf($(document.getElementById(tmp)).val()) == -1) {
                 combo.prop('disabled', true);
                 combo.parent().parent().css('color', 'lightgrey');
+                combo.parent().parent().hide();
             }
     }
 }
