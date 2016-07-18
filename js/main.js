@@ -183,7 +183,6 @@ function buildCategorical(obj, curr_obj) {
         console.log(' ');
     }
 
-
     if(obj[curr_obj].values.length == 1){
         //console.log(curr_obj, obj[curr_obj].values.length);
         elem.hide();
@@ -192,30 +191,61 @@ function buildCategorical(obj, curr_obj) {
 }
 
 function comboChng(obj, curr_obj, affected, value){
-
-
+    console.log(curr_obj);
     for(var a in affected){
         var parent_vals = obj[affected[a]].dependsOn[0][curr_obj].values;
         var tmp = affected[a];
+        var tmpElem = $(document.getElementById(tmp));
 
-        //console.log(tmp);
-
+        //tmpElem.is(":disabled") == false
         if(parent_vals.indexOf(value) != -1){
+            tmpElem.prop('disabled', false);
+            tmpElem.parent().parent().css('color', 'black');
+            tmpElem.parent().parent().show();
 
-            $(document.getElementById(tmp)).prop('disabled', false);
-            $(document.getElementById(tmp)).parent().parent().css('color', 'black');
-            $(document.getElementById(tmp)).parent().parent().show();
+            var affects = obj[tmp].affects != undefined ? obj[tmp].affects : null;
+            if(affects != null){
+                //console.log(affects, tmpElem.val());
+                comboChng(obj, tmp, affects, tmpElem.val());
+            }
         }
         else{
-            $(document.getElementById(tmp)).prop('disabled', true);
-            $(document.getElementById(tmp)).parent().parent().css('color', 'lightgray');
-            $(document.getElementById(tmp)).parent().parent().hide();
+            tmpElem.prop('disabled', true);
+            tmpElem.parent().parent().css('color', 'lightgray');
+            tmpElem.parent().parent().hide();
+
+            var affects = obj[tmp].affects != undefined ? obj[tmp].affects : null;
+            if(affects != null){
+                //console.log(affects, tmpElem.val());
+                comboChng(obj, tmp, affects, tmpElem.val());
+            }
         }
 
-        if('values' in obj[tmp]){
+        if('values' in obj[tmp]){// hide combos with constant cvals
             if(obj[tmp].values.length == 1){
-                //console.log($(document.getElementById(tmp)).parent().parent());
-                $(document.getElementById(tmp)).parent().parent().hide();
+                tmpElem.parent().parent().hide();
+            }
+        }
+    }
+
+    if(seen != undefined) {
+        for (var s in seen) {
+            var tmp = seen[s];
+            if ($(document.getElementById(tmp)).is(':disabled') == false) {
+                //if (obj[tmp].dependsOn) {
+                //}
+                if('dependsOn' in obj[tmp]) {
+                    for (var i in obj[tmp].dependsOn[0]) {
+                        if ($(document.getElementById(i)).is(":disabled") == true) {
+                            $(document.getElementById(tmp)).prop('disabled', true);
+                            $(document.getElementById(tmp)).parent().parent().hide();
+
+                        }
+                    }
+                }
+
+                console.log(tmp);
+                var x=2;
             }
         }
     }
