@@ -321,7 +321,7 @@ function generate_params() {
     var zip = new JSZip();
     var file = [];
     file.push(JSON.stringify(result));
-    zip.file("paramVals.json", JSON.stringify(result, null, '\t'));
+    zip.file("hp.json", JSON.stringify(result, null, '\t'));
 
     zip.generateAsync({type:"blob"})
         .then(function(content) {
@@ -333,5 +333,5 @@ function generate_params() {
     //result = JSON.parse(result);
     //JSON.stringify(result ,'\#t');
 // console.log(JSON.stringify(result, null, '\n'));
-    alert(JSON.stringify(result));
+//    alert(JSON.stringify(result));
 }
