@@ -323,11 +323,13 @@ function generate_params() {
     }
     var zip = new JSZip();
     var file = [];
+    var utc = new Date().toJSON().slice(0,16);
+    utc = utc.replace('T', '--');
     file.push(JSON.stringify(result));
-    zip.file("hp.json", JSON.stringify(result, null, '\t'));
+    zip.file('hp_' + utc + '.json', JSON.stringify(result, null, '\t'));
 
     zip.generateAsync({type:"blob"})
         .then(function(content) {
-            //saveAs(content, "hp.json.zip");
+            saveAs(content, "hp.json.zip");
         });
 }
