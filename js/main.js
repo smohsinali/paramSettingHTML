@@ -28,10 +28,17 @@ function buildContinuous(obj, curr_obj) {
         stepDiv = 1000.0;
         tf = 6;
     }
-    var step = (max-min) / stepDiv;
+    var step = 0;
     if (obj[curr_obj]['integer'] == 'true'){
         step = 1;
         tf = 0;
+        if (obj[curr_obj]['log-scale'] == 'true') {
+            stepDiv = 1000.0;
+            step = (max - min) / stepDiv;
+        }
+    }
+    else {
+        step = (max - min) / stepDiv;
     }
 
     min = min.toFixed(tf);
@@ -343,8 +350,14 @@ function generate_params() {
         if ($(document.getElementById(tmp)).is(':disabled') == false) {
             if('log-scale' in data[seen[s]]) {
                 if (data[seen[s]]['log-scale'] == 'true') {
-                    console.log('l:', seen[s], ":", Math.pow(10, $(document.getElementById(tmp)).val()));
-                    result[seen[s]] = String(Math.pow(10, $(document.getElementById(tmp)).val()));
+                    if (data[seen[s]]['integer'] == 'true'){
+                        console.log('l:', seen[s], ":", Math.pow(10, $(document.getElementById(tmp)).val()));
+                        result[seen[s]] = String(parseInt(Math.pow(10, $(document.getElementById(tmp)).val())));
+                    }
+                    else {
+                        console.log('l:', seen[s], ":", Math.pow(10, $(document.getElementById(tmp)).val()));
+                        result[seen[s]] = String(Math.pow(10, $(document.getElementById(tmp)).val()));
+                    }
                 }
                 else{
                     console.log(seen[s], ":", $(document.getElementById(tmp)).val());
