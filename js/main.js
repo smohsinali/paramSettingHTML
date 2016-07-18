@@ -20,9 +20,18 @@ function buildContinuous(obj, curr_obj) {
     var min = obj[curr_obj]['log-scale'] == 'true' ? Math.log10(obj[curr_obj].range[0]) : obj[curr_obj].range[0];
     var max = obj[curr_obj]['log-scale'] == 'true' ? Math.log10(obj[curr_obj].range[1]) : obj[curr_obj].range[1];
     var defaultVal = obj[curr_obj]['log-scale'] == 'true' ? Math.log10(obj[curr_obj].default) : obj[curr_obj].default;
-    var step = (max-min) / 100.000;
 
+    var stepDiv = 100.0;
     var tf = 2;
+    if (obj[curr_obj]['log-scale'] == 'true'){
+        stepDiv = 1000.0;
+        tf = 6;
+    }
+    var step = (max-min) / stepDiv;
+    if (obj[curr_obj]['integer'] == 'true'){
+        step = 1;
+    }
+
     min = min.toFixed(tf);
     max = max.toFixed(tf);
     //step = step.toFixed(tf+2);
@@ -120,7 +129,7 @@ function buildCategorical(obj, curr_obj) {
 
     });
 
-    console.log(curr_obj, obj[curr_obj].values.length);
+    //console.log(curr_obj, obj[curr_obj].values.length);
 
 
     var defaultVal = obj[curr_obj].default;
@@ -171,16 +180,22 @@ function buildCategorical(obj, curr_obj) {
         disableCategorical(combo, depOn);
     }
 
+
     if(obj[curr_obj].values.length == 1){
+        //console.log(curr_obj, obj[curr_obj].values.length);
         elem.hide();
     }
     return elem;
 }
 
 function comboChng(obj, curr_obj, affected, value){
+
+
     for(var a in affected){
         var parent_vals = obj[affected[a]].dependsOn[0][curr_obj].values;
         var tmp = affected[a];
+
+
 
         if(parent_vals.indexOf(value) != -1){
             $(document.getElementById(tmp)).prop('disabled', false);
@@ -191,6 +206,13 @@ function comboChng(obj, curr_obj, affected, value){
             $(document.getElementById(tmp)).prop('disabled', true);
             $(document.getElementById(tmp)).parent().parent().css('color', 'lightgray');
             $(document.getElementById(tmp)).parent().parent().hide();
+        }
+
+        if('values' in obj[tmp]){
+            if(obj[tmp].values.length == 1){
+                console.log($(document.getElementById(tmp)).parent().parent());
+                $(document.getElementById(tmp)).parent().parent().hide();
+            }
         }
     }
 
@@ -283,6 +305,18 @@ function generate_params() {
             result[seen[s]] = $(document.getElementById(tmp)).val();
         }
     }
+    var zip = new JSZip();
+    var file = [];
+    file.push(JSON.stringify(result));
+    zip.file("paramVals.json", JSON.stringify(result, null, '\t'));
+
+    zip.generateAsync({type:"blob"})
+        .then(function(content) {
+            // see FileSaver.js
+            saveAs(content, "hp.json.zip");
+        });
+    //var blob = new Blob(file, {type: "text/plain;charset=utf-8"});
+    //saveAs(zip, "hello.zip");
     //result = JSON.parse(result);
     //JSON.stringify(result ,'\#t');
 // console.log(JSON.stringify(result, null, '\n'));
