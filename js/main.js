@@ -36,13 +36,7 @@ function buildContinuous(obj, curr_obj) {
 
     min = min.toFixed(tf);
     max = max.toFixed(tf);
-    //step = step.toFixed(tf+2);
     defaultVal = defaultVal.toFixed(tf);
-
-
-    //var min = obj[curr_obj].range[0];
-    //var max = obj[curr_obj].range[1];
-    //var defaultVal = obj[curr_obj].default;
 
     var slider = $('<input>').attr({
         id: curr_obj,
@@ -56,16 +50,19 @@ function buildContinuous(obj, curr_obj) {
 
     slider.on("change", function () {
         var sv = parseFloat(slider.val());
-        curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
+        //curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
+        curr_val_div.text(sv.toFixed(tf));
     });
 
     slider.on("input", function () {
         var sv = parseFloat(slider.val());
-        curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
+        //curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
+        curr_val_div.text(sv.toFixed(tf));
     });
 
     var sv = parseFloat(slider.val());
-    curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
+    //curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
+    curr_val_div.text(sv.toFixed(tf));
 
     var info_img = $('<img></img>').attr({
         src: 'info.png',
@@ -314,8 +311,14 @@ function generate_params() {
     for (var s in seen) {
         var tmp = seen[s];
         if ($(document.getElementById(tmp)).is(':disabled') == false) {
-            console.log(seen[s], ":", $(document.getElementById(tmp)).val());
-            result[seen[s]] = $(document.getElementById(tmp)).val();
+            if('log-scale' in data[seen[s]]){
+                console.log('l:', seen[s], ":", Math.pow(10, $(document.getElementById(tmp)).val()));
+                result[seen[s]] = Math.pow(10, $(document.getElementById(tmp)).val());
+            }
+            else {
+                console.log(seen[s], ":", $(document.getElementById(tmp)).val());
+                result[seen[s]] = $(document.getElementById(tmp)).val();
+            }
         }
     }
     var zip = new JSZip();
@@ -325,13 +328,6 @@ function generate_params() {
 
     zip.generateAsync({type:"blob"})
         .then(function(content) {
-            // see FileSaver.js
-            saveAs(content, "hp.json.zip");
+            //saveAs(content, "hp.json.zip");
         });
-    //var blob = new Blob(file, {type: "text/plain;charset=utf-8"});
-    //saveAs(zip, "hello.zip");
-    //result = JSON.parse(result);
-    //JSON.stringify(result ,'\#t');
-// console.log(JSON.stringify(result, null, '\n'));
-//    alert(JSON.stringify(result));
 }
