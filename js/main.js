@@ -6,6 +6,7 @@
 var data = data_js;
 
 function buildContinuous(obj, curr_obj) {
+    console.log('curr_ob2', curr_obj);
     var depOn = obj[curr_obj].dependsOn != undefined ? obj[curr_obj].dependsOn[0] : null;
     //console.log("building continuous var", curr_obj, "depon", depOn);
 
@@ -30,6 +31,7 @@ function buildContinuous(obj, curr_obj) {
     var step = (max-min) / stepDiv;
     if (obj[curr_obj]['integer'] == 'true'){
         step = 1;
+        tf = 0;
     }
 
     min = min.toFixed(tf);
@@ -100,14 +102,16 @@ function buildContinuous(obj, curr_obj) {
 
 
     if(depOn != null){
+        console.log('depon_nn', curr_obj, depOn);
         disableCategorical(slider, depOn);
+        console.log('');
     }
 
     return elem;
 }
 
 function buildCategorical(obj, curr_obj) {
-
+    console.log('curr_obj', curr_obj);
     var depOn = obj[curr_obj].dependsOn != undefined ? obj[curr_obj].dependsOn[0] : null;
     var affected = obj[curr_obj].affects != undefined ? obj[curr_obj].affects : null;
     //console.log(curr_obj, "affects", affected);
@@ -177,7 +181,9 @@ function buildCategorical(obj, curr_obj) {
     elem.append(info_div);
 
     if (depOn != null) {
+        console.log('depon_nn', curr_obj, depOn);
         disableCategorical(combo, depOn);
+        console.log(' ');
     }
 
 
@@ -195,9 +201,10 @@ function comboChng(obj, curr_obj, affected, value){
         var parent_vals = obj[affected[a]].dependsOn[0][curr_obj].values;
         var tmp = affected[a];
 
-
+        //console.log(tmp);
 
         if(parent_vals.indexOf(value) != -1){
+
             $(document.getElementById(tmp)).prop('disabled', false);
             $(document.getElementById(tmp)).parent().parent().css('color', 'black');
             $(document.getElementById(tmp)).parent().parent().show();
@@ -210,7 +217,7 @@ function comboChng(obj, curr_obj, affected, value){
 
         if('values' in obj[tmp]){
             if(obj[tmp].values.length == 1){
-                console.log($(document.getElementById(tmp)).parent().parent());
+                //console.log($(document.getElementById(tmp)).parent().parent());
                 $(document.getElementById(tmp)).parent().parent().hide();
             }
         }
@@ -222,12 +229,18 @@ function comboChng(obj, curr_obj, affected, value){
 function disableCategorical(combo, depOn) {
     for (var d in depOn) {
         var tmp = d;
-
             if (depOn[d].values.indexOf($(document.getElementById(tmp)).val()) == -1) {
+                //console.log(d);
                 combo.prop('disabled', true);
                 combo.parent().parent().css('color', 'lightgrey');
                 combo.parent().parent().hide();
             }
+        if($(document.getElementById(tmp)).is(":disabled") == true){
+            combo.prop('disabled', true);
+            combo.parent().parent().css('color', 'lightgrey');
+            combo.parent().parent().hide();
+        }
+
     }
 }
 
