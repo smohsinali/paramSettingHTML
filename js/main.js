@@ -50,19 +50,19 @@ function buildContinuous(obj, curr_obj) {
 
     slider.on("change", function () {
         var sv = parseFloat(slider.val());
-        //curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
-        curr_val_div.text(sv.toFixed(tf));
+        curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
+        //curr_val_div.text(sv.toFixed(tf));
     });
 
     slider.on("input", function () {
         var sv = parseFloat(slider.val());
-        //curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
-        curr_val_div.text(sv.toFixed(tf));
+        curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
+        //curr_val_div.text(sv.toFixed(tf));
     });
 
     var sv = parseFloat(slider.val());
-    //curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
-    curr_val_div.text(sv.toFixed(tf));
+    curr_val_div.text(obj[curr_obj]['log-scale'] == 'true' ? Math.pow(10, sv).toFixed(tf) : sv.toFixed(tf));
+    //curr_val_div.text(sv.toFixed(tf));
 
     var info_img = $('<img></img>').attr({
         src: 'info.png',
@@ -341,9 +341,15 @@ function generate_params() {
     for (var s in seen) {
         var tmp = seen[s];
         if ($(document.getElementById(tmp)).is(':disabled') == false) {
-            if('log-scale' in data[seen[s]]){
-                console.log('l:', seen[s], ":", Math.pow(10, $(document.getElementById(tmp)).val()));
-                result[seen[s]] = Math.pow(10, $(document.getElementById(tmp)).val());
+            if('log-scale' in data[seen[s]]) {
+                if (data[seen[s]]['log-scale'] == 'true') {
+                    console.log('l:', seen[s], ":", Math.pow(10, $(document.getElementById(tmp)).val()));
+                    result[seen[s]] = String(Math.pow(10, $(document.getElementById(tmp)).val()));
+                }
+                else{
+                    console.log(seen[s], ":", $(document.getElementById(tmp)).val());
+                    result[seen[s]] = $(document.getElementById(tmp)).val();
+                }
             }
             else {
                 console.log(seen[s], ":", $(document.getElementById(tmp)).val());
@@ -356,10 +362,10 @@ function generate_params() {
     var utc = new Date().toJSON().slice(0,16);
     utc = utc.replace('T', '--');
     file.push(JSON.stringify(result));
-    zip.file('hp_' + utc + '.json', JSON.stringify(result, null, '\t'));
+    zip.file('hp.json', JSON.stringify(result, null, '\t'));
 
     zip.generateAsync({type:"blob"})
         .then(function(content) {
-            saveAs(content, "hp.json.zip");
+            saveAs(content, 'hp_' + utc + '.json.zip');
         });
 }
