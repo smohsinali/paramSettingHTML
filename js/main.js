@@ -73,7 +73,7 @@ function buildContinuous(obj, curr_obj) {
 
     var info_img = $('<img></img>').attr({
         src: 'info.png',
-        width: '20px',
+        width: '16px',
         'vertical-align': 'text-bottom'
     }).appendTo(info_div);
 
@@ -128,7 +128,7 @@ function buildCategorical(obj, curr_obj) {
     var info_div = $("<a class='varInfo' href='#'></a>").css({"display": "inline-block"});
 
     var combo = $("<select ></select>").attr({
-        id: curr_obj
+        id: curr_obj,
     });
 
     $.each(obj[curr_obj].values, function (i, el) {
@@ -136,7 +136,6 @@ function buildCategorical(obj, curr_obj) {
         combo.append("<option>" + el + "</option>");
 
     });
-
     //console.log(curr_obj, obj[curr_obj].values.length);
 
 
@@ -155,7 +154,7 @@ function buildCategorical(obj, curr_obj) {
 
     var info_img = $('<img></img>').attr({
         src: 'info.png',
-        width: '20px',
+        width: '16px',
         'vertical-align': 'text-bottom'
     }).appendTo(info_div);
 
@@ -377,7 +376,7 @@ function generate_params() {
     file.push(JSON.stringify(result));
     zip.file('hp.json', JSON.stringify(result, null, '\t'));
 
-    zip.generateAsync({type:"blob"})
+    zip.generateAsync({type:"application/javascript"})
         .then(function(content) {
             saveAs(content, 'hp_' + utc + '.json.zip');
         });

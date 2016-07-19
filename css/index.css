@@ -1,10 +1,23 @@
+.hyParams{
+    display: table;
+    /*width: 100%;*/
+    border: 1px solid #999999;
+    padding: 12px 20px;
+
+}
+
 .varaible {
     padding: 5px;
-    height: 24px;
+    height: 28px;
+    border: 1px solid darkgrey;
+    padding: 3px 10px;
+    background-color: ghostwhite;
 }
 
 .varName {
     width: 500px;
+    vertical-align: super;
+
 }
 
 .varInfo {
