@@ -1,6 +1,6 @@
 var info = {
-    "rescaling:__choice__": "ABC",
-    "classifier:__choice__": "",
+    "rescaling:__choice__": "Rescale the data (necessary for some preprocessing or classification algorithms). Possible choices are 'none' which leaves the data as it is, 'min/max' which rescales the each feature linearly between zero and one, 'standardize' which transforms each feature to have zero mean and unit variance and 'normalize' which transforms each sample to have length one (manhattan distance).",
+    "classifier:__choice__": "Classifier used in the pipeline.",
     "classifier:decision_tree:min_samples_leaf ": "The minimum number of samples required to be at a leaf node.",
     "classifier:decision_tree:criterion": "The function to measure the quality of a split. 'gini': Gini impurity; 'entropy': information gain",
     "classifier:decision_tree:min_samples_split": "The minimum number of samples required to split an internal node.",
