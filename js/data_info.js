@@ -28,6 +28,9 @@ max_features is a percentage and int(max_features * n_features) features are con
     "classifier:adaboost:max_depth": "The maximum depth of the tree.",
     "classifier:adaboost:n_estimators": "The maximum number of estimators at which boosting is terminated.",
 
+    "classifier:bernoulli_nb:fit_prior": "Whether to learn class prior probabilities or not. If false, a uniform prior will be used.",
+    "classifier:bernoulli_nb:alpha": "Additive (Laplace/Lidstone) smoothing parameter (0 for no smoothing).",
+
     "classifier:sgd:alpha": "Constant that multiplies the regularization term. Also used to compute learning_rate when set to 'optimal'.",
     "classifier:sgd:learning_rate": "The learning rate schedule: constant: eta = eta0\
 optimal: eta = 1.0 / (alpha * (t + t0))\
@@ -41,16 +44,6 @@ invscaling: eta = eta0 / pow(t, power_t)",
     "classifier:sgd:epsilon": "Determines the threshold at which it becomes less important to get the prediction exactly right.",
     "classifier:sgd:n_iter": "The number of passes over the training data (aka epochs). The number of iterations is set to 1 if using partial_fit.",
 
-    "classifier:lda:shrinkage": "Shrinkage parameter, possible values:\
-None: no shrinkage (default).\
-'auto': automatic shrinkage using the Ledoit-Wolf lemma.\
-'manual'",
-    "classifier:lda:n_components": "Number of components (< n_classes - 1) for dimensionality reduction.",
-    "classifier:lda:shrinkage_factor": "fixed shrinkage parameters",
-
-    "classifier:qda:reg_param": "Regularizes the covariance estimate as (1-reg_param)*Sigma + reg_param*np.eye(n_features).",
-
-
     "classifier:xgradient_boosting:subsample": "subsample ratio of the training instance. Setting it to 0.5 means that XGBoost randomly collected half of the data instances to grow trees and this will prevent overfitting.",
     "classifier:xgradient_boosting:min_child_weight": "Minimum sum of instance weight(hessian) needed in a child. If the tree partition step results in a leaf node with the sum of instance weight less than min_child_weight, then the building process will give up further partitioning.",
     "classifier:xgradient_boosting:n_estimators": "The number of rounds for boosting.",
@@ -63,7 +56,6 @@ None: no shrinkage (default).\
     "classifier:libsvm_svc:degree": "Degree of the polynomial kernel function ('poly').",
     "classifier:libsvm_svc:coef0": "Independent term in kernel function.",
     "classifier:libsvm_svc:gamma": "Kernel coefficient for 'rbf', 'poly' and 'sigmoid'.",
-    "classifier:libsvm_svc:tol": "Tolerance for stopping criterion.",
 
     "classifier:liblinear_svc:C": "Penalty parameter C of the error term.",
 
