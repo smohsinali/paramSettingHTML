@@ -4,6 +4,7 @@
     border: 1px solid #999999;
     padding: 12px 20px;
 
+    /*margin-left:200px;*/
 }
 
 .varaible {
@@ -15,16 +16,44 @@
 }
 
 .varName {
-    width: 500px;
+    width: 400px;
     vertical-align: super;
 
 }
 
-.varInfo {
+.varInfo div {
     vertical-align: top;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 
-.varSelect{
+.varSelect select{
+    width: 220px;
+}
+.varSelect input{
+    width: 220px;
+}
 
+/*button{*/
+    /*margin-top: 20px;*/
+    /*margin-left: 200px;*/
+/*}*/
+
+p{
+    /*margin-left: 200px;*/
+    max-width: 500px;
+    text-align: justify;
+
+}
+
+li{
+    /*margin-left: 200px;*/
+    max-width: 500px;
+}
+body{
+    margin-left: 200px;
+    max-width: 780px;
+}
+
+.sam{
+    float:  right;
 }

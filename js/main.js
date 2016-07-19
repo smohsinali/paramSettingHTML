@@ -18,15 +18,15 @@ function buildContinuous(obj, curr_obj) {
     var curr_val_div = $("<div class='varVal'></div>").css({"display": "inline-block"});
     var info_div = $("<a class='varInfo' href='#'></a>").css({"display": "inline-block"});
 
-    var min = obj[curr_obj]['log-scale'] == 'true' ? Math.log10(obj[curr_obj].range[0]) : obj[curr_obj].range[0];
-    var max = obj[curr_obj]['log-scale'] == 'true' ? Math.log10(obj[curr_obj].range[1]) : obj[curr_obj].range[1];
-    var defaultVal = obj[curr_obj]['log-scale'] == 'true' ? Math.log10(obj[curr_obj].default) : obj[curr_obj].default;
+    var min = obj[curr_obj]['log-scale'] == 'true' ? Math.log(obj[curr_obj].range[0])/Math.LN10 : obj[curr_obj].range[0];
+    var max = obj[curr_obj]['log-scale'] == 'true' ? Math.log(obj[curr_obj].range[1])/Math.LN10 : obj[curr_obj].range[1];
+    var defaultVal = obj[curr_obj]['log-scale'] == 'true' ? Math.log(obj[curr_obj].default)/Math.LN10 : obj[curr_obj].default;
 
     var stepDiv = 100.0;
     var tf = 2;
     if (obj[curr_obj]['log-scale'] == 'true'){
         stepDiv = 1000.0;
-        tf = 6;
+        tf = 3;
     }
     var step = 0;
     if (obj[curr_obj]['integer'] == 'true'){
@@ -129,6 +129,7 @@ function buildCategorical(obj, curr_obj) {
 
     var combo = $("<select ></select>").attr({
         id: curr_obj,
+        width: '400px'
     });
 
     $.each(obj[curr_obj].values, function (i, el) {
@@ -136,6 +137,7 @@ function buildCategorical(obj, curr_obj) {
         combo.append("<option>" + el + "</option>");
 
     });
+
     //console.log(curr_obj, obj[curr_obj].values.length);
 
 
