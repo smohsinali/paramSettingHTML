@@ -5,11 +5,57 @@
     <link rel="stylesheet" href="css/index.css"/>
     <!--<link rel="stylesheet" href="css/jquery-ui.css"/>-->
 
-    <title>HyperParameter Config Challenge</title>
+    <title>Beat auto-sklearn</title>
 </head>
 <body>
+
+    <h1>Beat auto-sklearn</h1>
+    
+    <img src="unclesam.jpg" alt="Uncle Sam points at you and says: I want you to beat auto-sklearn"></img>
+
+    <p>In this game we challenge you to beat auto-sklearn, the winner of the recent ChaLearn AutoML challenge. With this little game we want to see if the human (you) can rival an automated procedure for supervised classification.</p>
+
+   <p>In a nutshell, auto-sklearn uses state-of-the-art Bayesian optimization to configure a flexible machine learning pipeline implemented in scikit-learn. Your job is to configure the machine learning pipeline with the form below.</p>
+
+    <p>Although auto-sklearn could exploit information about the dataset at hand, we disabled this feature. Nevertheless, we give you some information about the dataset:
+
+        <ul>
+            <li>binary classification, balanced classes</li>
+            <li>normalized accuracy (random: 0.0, perfect: 1.0)</li>
+            <li>259 numerical features</li>
+            <li>3140 training samples/3240 test samples</li>
+            <li>no missing values etc...</li>
+        </ul>
+    </p>
+
+    <p>Try Beating Auto-Sklearn
+        <ol>
+            <li>Get a Codalab Id here (link to competition)</li>
+            <li>Configure the machine learning pipeline with the form below (the info button will show additional info)</li>
+            <li>Click the button to download the submission file</li>
+            <li>Upload the submission file to Codalab (link to competition)</li>
+            <li>Check the score on the leaderboard (link to leaderbord)</li>
+        </ol>
+    </p>
+
+    <p>Good luck!</p>
+
     <div id="params"></div>
-    <button type="button" onclick="generate_params()">Click Me!</button>
+    <button type="button" onclick="generate_params()">Download submission!</button>
+
+    <h2>Further remarks</h2>
+    <p>DO NOT CHANGE THE DOWNLOADED FILE. Re-upload it as it is.</p>
+    
+    <p>Your configuration will be automatically evaluated with a time-limit of 5min. Although we carefully reduced the space of possible configurations, it is still possible to hit the time or memory limit. Such runs will be scored with -1.</p>
+
+    <h2>The pipeline</h2>
+    TODO
+    
+    <h2>Learn more<h2>
+    <ul>
+        <li>Challenge analysis paper</li>
+        <li>auto-sklearn website</li>
+    </ul>
 
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/libs/FileSaver.min.js"></script>
