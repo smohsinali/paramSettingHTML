@@ -1,4 +1,275 @@
 var data_js = {
+    "rescaling:__choice__": {
+        "default": "min/max", 
+        "type": "categrical", 
+        "values": [
+            "none", 
+            "min/max", 
+            "standardize", 
+            "normalize"
+        ]
+    },
+    "preprocessor:__choice__": {
+        "affects": [
+            "preprocessor:kernel_pca:n_components", 
+            "preprocessor:pca:keep_variance", 
+            "preprocessor:polynomial:interaction_only", 
+            "preprocessor:polynomial:include_bias", 
+            "preprocessor:pca:whiten", 
+            "preprocessor:select_percentile_classification:score_func", 
+            "preprocessor:kernel_pca:kernel", 
+            "preprocessor:select_percentile_classification:percentile", 
+            "preprocessor:polynomial:degree"
+        ], 
+        "default": "no_preprocessing", 
+        "type": "categrical", 
+        "values": [
+            "kernel_pca", 
+            "no_preprocessing", 
+            "pca", 
+            "polynomial", 
+            "select_percentile_classification"
+        ]
+    }, 
+    "preprocessor:kernel_pca:coef0": {
+        "default": 0.0, 
+        "dependsOn": [
+            {
+                "preprocessor:kernel_pca:kernel": {
+                    "type": "categorical", 
+                    "values": [
+                        "poly", 
+                        "sigmoid"
+                    ]
+                }
+            }
+        ], 
+        "integer": "false", 
+        "log-scale": "false", 
+        "range": [
+            -1.0, 
+            1.0
+        ], 
+        "type": "continuous"
+    }, 
+    "preprocessor:kernel_pca:degree": {
+        "default": 3, 
+        "dependsOn": [
+            {
+                "preprocessor:kernel_pca:kernel": {
+                    "type": "categorical", 
+                    "values": [
+                        "poly"
+                    ]
+                }
+            }
+        ], 
+        "integer": "true", 
+        "log-scale": "false", 
+        "range": [
+            2, 
+            5
+        ], 
+        "type": "continuous"
+    }, 
+    "preprocessor:kernel_pca:gamma": {
+        "default": 1.0, 
+        "dependsOn": [
+            {
+                "preprocessor:kernel_pca:kernel": {
+                    "type": "categorical", 
+                    "values": [
+                        "poly", 
+                        "rbf"
+                    ]
+                }
+            }
+        ], 
+        "integer": "false", 
+        "log-scale": "true", 
+        "range": [
+            3.0517578125e-05, 
+            8.0
+        ], 
+        "type": "continuous"
+    }, 
+    "preprocessor:kernel_pca:kernel": {
+        "affects": [
+            "preprocessor:kernel_pca:coef0", 
+            "preprocessor:kernel_pca:degree", 
+            "preprocessor:kernel_pca:gamma"
+        ], 
+        "default": "rbf", 
+        "dependsOn": [
+            {
+                "preprocessor:__choice__": {
+                    "type": "categorical", 
+                    "values": [
+                        "kernel_pca"
+                    ]
+                }
+            }
+        ], 
+        "type": "categrical", 
+        "values": [
+            "poly", 
+            "rbf", 
+            "sigmoid", 
+            "cosine"
+        ]
+    }, 
+    "preprocessor:kernel_pca:n_components": {
+        "default": 100, 
+        "dependsOn": [
+            {
+                "preprocessor:__choice__": {
+                    "type": "categorical", 
+                    "values": [
+                        "kernel_pca"
+                    ]
+                }
+            }
+        ], 
+        "integer": "true", 
+        "log-scale": "false", 
+        "range": [
+            10, 
+            500
+        ], 
+        "type": "continuous"
+    }, 
+    "preprocessor:pca:keep_variance": {
+        "default": 0.99990000000000001, 
+        "dependsOn": [
+            {
+                "preprocessor:__choice__": {
+                    "type": "categorical", 
+                    "values": [
+                        "pca"
+                    ]
+                }
+            }
+        ], 
+        "integer": "false", 
+        "log-scale": "false", 
+        "range": [
+            0.5, 
+            0.9999
+        ], 
+        "type": "continuous"
+    }, 
+    "preprocessor:pca:whiten": {
+        "default": "False", 
+        "dependsOn": [
+            {
+                "preprocessor:__choice__": {
+                    "type": "categorical", 
+                    "values": [
+                        "pca"
+                    ]
+                }
+            }
+        ], 
+        "type": "categrical", 
+        "values": [
+            "False", 
+            "True"
+        ]
+    }, 
+    "preprocessor:polynomial:degree": {
+        "default": 2, 
+        "dependsOn": [
+            {
+                "preprocessor:__choice__": {
+                    "type": "categorical", 
+                    "values": [
+                        "polynomial"
+                    ]
+                }
+            }
+        ], 
+        "integer": "true", 
+        "log-scale": "false", 
+        "range": [
+            2, 
+            3
+        ], 
+        "type": "continuous"
+    }, 
+    "preprocessor:polynomial:include_bias": {
+        "default": "True", 
+        "dependsOn": [
+            {
+                "preprocessor:__choice__": {
+                    "type": "categorical", 
+                    "values": [
+                        "polynomial"
+                    ]
+                }
+            }
+        ], 
+        "type": "categrical", 
+        "values": [
+            "True", 
+            "False"
+        ]
+    }, 
+    "preprocessor:polynomial:interaction_only": {
+        "default": "False", 
+        "dependsOn": [
+            {
+                "preprocessor:__choice__": {
+                    "type": "categorical", 
+                    "values": [
+                        "polynomial"
+                    ]
+                }
+            }
+        ], 
+        "type": "categrical", 
+        "values": [
+            "False", 
+            "True"
+        ]
+    }, 
+    "preprocessor:select_percentile_classification:percentile": {
+        "default": 50.0, 
+        "dependsOn": [
+            {
+                "preprocessor:__choice__": {
+                    "type": "categorical", 
+                    "values": [
+                        "select_percentile_classification"
+                    ]
+                }
+            }
+        ], 
+        "integer": "false", 
+        "log-scale": "false", 
+        "range": [
+            1.0, 
+            99.0
+        ], 
+        "type": "continuous"
+    }, 
+    "preprocessor:select_percentile_classification:score_func": {
+        "default": "chi2", 
+        "dependsOn": [
+            {
+                "preprocessor:__choice__": {
+                    "type": "categorical", 
+                    "values": [
+                        "select_percentile_classification"
+                    ]
+                }
+            }
+        ], 
+        "type": "categrical", 
+        "values": [
+            "chi2", 
+            "f_classif"
+        ]
+    },
     "balancing:strategy": {
         "default": "none", 
         "type": "categrical", 
@@ -1489,276 +1760,5 @@ var data_js = {
         "values": [
             "False"
         ]
-    }, 
-    "preprocessor:__choice__": {
-        "affects": [
-            "preprocessor:kernel_pca:n_components", 
-            "preprocessor:pca:keep_variance", 
-            "preprocessor:polynomial:interaction_only", 
-            "preprocessor:polynomial:include_bias", 
-            "preprocessor:pca:whiten", 
-            "preprocessor:select_percentile_classification:score_func", 
-            "preprocessor:kernel_pca:kernel", 
-            "preprocessor:select_percentile_classification:percentile", 
-            "preprocessor:polynomial:degree"
-        ], 
-        "default": "no_preprocessing", 
-        "type": "categrical", 
-        "values": [
-            "kernel_pca", 
-            "no_preprocessing", 
-            "pca", 
-            "polynomial", 
-            "select_percentile_classification"
-        ]
-    }, 
-    "preprocessor:kernel_pca:coef0": {
-        "default": 0.0, 
-        "dependsOn": [
-            {
-                "preprocessor:kernel_pca:kernel": {
-                    "type": "categorical", 
-                    "values": [
-                        "poly", 
-                        "sigmoid"
-                    ]
-                }
-            }
-        ], 
-        "integer": "false", 
-        "log-scale": "false", 
-        "range": [
-            -1.0, 
-            1.0
-        ], 
-        "type": "continuous"
-    }, 
-    "preprocessor:kernel_pca:degree": {
-        "default": 3, 
-        "dependsOn": [
-            {
-                "preprocessor:kernel_pca:kernel": {
-                    "type": "categorical", 
-                    "values": [
-                        "poly"
-                    ]
-                }
-            }
-        ], 
-        "integer": "true", 
-        "log-scale": "false", 
-        "range": [
-            2, 
-            5
-        ], 
-        "type": "continuous"
-    }, 
-    "preprocessor:kernel_pca:gamma": {
-        "default": 1.0, 
-        "dependsOn": [
-            {
-                "preprocessor:kernel_pca:kernel": {
-                    "type": "categorical", 
-                    "values": [
-                        "poly", 
-                        "rbf"
-                    ]
-                }
-            }
-        ], 
-        "integer": "false", 
-        "log-scale": "true", 
-        "range": [
-            3.0517578125e-05, 
-            8.0
-        ], 
-        "type": "continuous"
-    }, 
-    "preprocessor:kernel_pca:kernel": {
-        "affects": [
-            "preprocessor:kernel_pca:coef0", 
-            "preprocessor:kernel_pca:degree", 
-            "preprocessor:kernel_pca:gamma"
-        ], 
-        "default": "rbf", 
-        "dependsOn": [
-            {
-                "preprocessor:__choice__": {
-                    "type": "categorical", 
-                    "values": [
-                        "kernel_pca"
-                    ]
-                }
-            }
-        ], 
-        "type": "categrical", 
-        "values": [
-            "poly", 
-            "rbf", 
-            "sigmoid", 
-            "cosine"
-        ]
-    }, 
-    "preprocessor:kernel_pca:n_components": {
-        "default": 100, 
-        "dependsOn": [
-            {
-                "preprocessor:__choice__": {
-                    "type": "categorical", 
-                    "values": [
-                        "kernel_pca"
-                    ]
-                }
-            }
-        ], 
-        "integer": "true", 
-        "log-scale": "false", 
-        "range": [
-            10, 
-            500
-        ], 
-        "type": "continuous"
-    }, 
-    "preprocessor:pca:keep_variance": {
-        "default": 0.99990000000000001, 
-        "dependsOn": [
-            {
-                "preprocessor:__choice__": {
-                    "type": "categorical", 
-                    "values": [
-                        "pca"
-                    ]
-                }
-            }
-        ], 
-        "integer": "false", 
-        "log-scale": "false", 
-        "range": [
-            0.5, 
-            0.9999
-        ], 
-        "type": "continuous"
-    }, 
-    "preprocessor:pca:whiten": {
-        "default": "False", 
-        "dependsOn": [
-            {
-                "preprocessor:__choice__": {
-                    "type": "categorical", 
-                    "values": [
-                        "pca"
-                    ]
-                }
-            }
-        ], 
-        "type": "categrical", 
-        "values": [
-            "False", 
-            "True"
-        ]
-    }, 
-    "preprocessor:polynomial:degree": {
-        "default": 2, 
-        "dependsOn": [
-            {
-                "preprocessor:__choice__": {
-                    "type": "categorical", 
-                    "values": [
-                        "polynomial"
-                    ]
-                }
-            }
-        ], 
-        "integer": "true", 
-        "log-scale": "false", 
-        "range": [
-            2, 
-            3
-        ], 
-        "type": "continuous"
-    }, 
-    "preprocessor:polynomial:include_bias": {
-        "default": "True", 
-        "dependsOn": [
-            {
-                "preprocessor:__choice__": {
-                    "type": "categorical", 
-                    "values": [
-                        "polynomial"
-                    ]
-                }
-            }
-        ], 
-        "type": "categrical", 
-        "values": [
-            "True", 
-            "False"
-        ]
-    }, 
-    "preprocessor:polynomial:interaction_only": {
-        "default": "False", 
-        "dependsOn": [
-            {
-                "preprocessor:__choice__": {
-                    "type": "categorical", 
-                    "values": [
-                        "polynomial"
-                    ]
-                }
-            }
-        ], 
-        "type": "categrical", 
-        "values": [
-            "False", 
-            "True"
-        ]
-    }, 
-    "preprocessor:select_percentile_classification:percentile": {
-        "default": 50.0, 
-        "dependsOn": [
-            {
-                "preprocessor:__choice__": {
-                    "type": "categorical", 
-                    "values": [
-                        "select_percentile_classification"
-                    ]
-                }
-            }
-        ], 
-        "integer": "false", 
-        "log-scale": "false", 
-        "range": [
-            1.0, 
-            99.0
-        ], 
-        "type": "continuous"
-    }, 
-    "preprocessor:select_percentile_classification:score_func": {
-        "default": "chi2", 
-        "dependsOn": [
-            {
-                "preprocessor:__choice__": {
-                    "type": "categorical", 
-                    "values": [
-                        "select_percentile_classification"
-                    ]
-                }
-            }
-        ], 
-        "type": "categrical", 
-        "values": [
-            "chi2", 
-            "f_classif"
-        ]
-    }, 
-    "rescaling:__choice__": {
-        "default": "min/max", 
-        "type": "categrical", 
-        "values": [
-            "none", 
-            "min/max", 
-            "standardize", 
-            "normalize"
-        ]
-    }
+    } 
 }
