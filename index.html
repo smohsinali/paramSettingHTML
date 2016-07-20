@@ -42,19 +42,32 @@
     <h2>Instructions</h2>
     <ol>
         <li>Get a Codalab Id <a
-                href="https://competitions-test.codalab.org/competitions/1133?secret_key=abf5722e-5f7b-43fb-8363-cf636dde870a">here</a>
+                href="https://competitions-test.codalab.org/competitions/1133?secret_key=abf5722e-5f7b-43fb-8363-cf636dde870a">here</a>.
         </li>
         <li>Configure the machine learning pipeline with the form below (the info icons will display the meaning of the
-            hyperparameters)
-        </li>
-        <li>Click the button to download the submission file</li>
+            hyperparameters).</li>
+        <li>Click the button to download the submission file.</li>
         <li>Upload the submission file to Codalab (<a
-                href="https://competitions-test.codalab.org/competitions/1133?secret_key=abf5722e-5f7b-43fb-8363-cf636dde870a#participate-submit_results">here</a>)
+                href="https://competitions-test.codalab.org/competitions/1133?secret_key=abf5722e-5f7b-43fb-8363-cf636dde870a#participate-submit_results">here</a>).
         </li>
         <li>Check the score on the <a
-                href="https://competitions-test.codalab.org/competitions/1133?secret_key=abf5722e-5f7b-43fb-8363-cf636dde870a#results">leaderboard</a>
+                href="https://competitions-test.codalab.org/competitions/1133?secret_key=abf5722e-5f7b-43fb-8363-cf636dde870a#results">leaderboard</a>.
         </li>
+        <li>If you have any questions, do not hesitate to ask in the <a href="https://competitions-test.codalab.org/forums/202/">forum</a>.</li>
     </ol>
+    </p>
+    
+    <h2>The pipeline</h2>
+    <p>In this game you are tuning a simple machine learning pipeline with three steps:
+    <ol>
+        <li>Rescaling of the data, for example rescale each feature between zero and one.</li>
+        <li>Preprocessing, like PCA or univariate feature selection.</li>
+        <li>classification, like SVM or random forest.</li>
+    </ol>
+    </p>
+    
+    <p>
+    All algorithms except xgradient_boosting are from the library <a href="http://scikit-learn.org/stable/">scikit-learn</a> and you can learn more about them in their documentation. The only exception is the eXtreme Gradient Boosting algorithm, which comes from the package <a href="http://xgboost.readthedocs.io/en/latest/python/python_intro.html">xgboost</a>.
     </p>
     
     <h2>Further links</h2>
