@@ -8,15 +8,15 @@
 }
 
 .varaible {
-    border-style: solid;
+    /* border-style: solid; */
     /* padding: 5px; */
     height: 24px;
     /* border: 1px #ffffff; */
-    border-color: #b3afaf;
+    /* border-color: #b3afaf;*/
     padding: 3px 10px;
     background-color: ghostwhite;
     width:660px;
-    border-width: thin;
+    /* border-width: thin; */
 }
 
 .varName {
@@ -68,14 +68,14 @@ button{
 
 .information2 p{
     margin-left: 20px;
-    max-width: 500px;
+    max-width: 650px;
     text-align: justify;
 
 }
 
 .information2    li{
     /*margin-left: 200px;*/
-    max-width: 500px;
+    max-width: 650px;
 }
 
 body{
