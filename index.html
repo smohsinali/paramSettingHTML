@@ -8,33 +8,38 @@
     <title>Beat auto-sklearn</title>
 </head>
 <body>
-<div class="information">
-    <h1>Beat auto-sklearn</h1>
+    <div class="information">
+        <h1>Beat auto-sklearn</h1>
 
+        <img class='sam' src="unclesam.jpg" alt="Uncle Sam points at you and says: I want you to beat auto-sklearn" height='240px'></img>
+        
+        <p>In this game we challenge you to beat auto-sklearn, the winner of the recent ChaLearn AutoML challenge. With this
+            little game we want to see if the human (you) can rival an automated procedure for supervised
+            classification.</p>
 
-    <img class='sam' src="unclesam.jpg" alt="Uncle Sam points at you and says: I want you to beat auto-sklearn"></img>
-    <p>In this game we challenge you to beat auto-sklearn, the winner of the recent ChaLearn AutoML challenge. With this
-        little game we want to see if the human (you) can rival an automated procedure for supervised
-        classification.</p>
+        <p>In a nutshell, auto-sklearn uses state-of-the-art Bayesian optimization to configure a flexible machine learning
+            pipeline implemented in scikit-learn. Your job is to configure the machine learning pipeline with the form
+            below.</p>
 
-    <p>In a nutshell, auto-sklearn uses state-of-the-art Bayesian optimization to configure a flexible machine learning
-        pipeline implemented in scikit-learn. Your job is to configure the machine learning pipeline with the form
-        below.</p>
+        <p>Please find further instructions at <a href="#instructions">the bottom of this page.</a><p>
 
+        <p>Good luck!</p>
+    </div>
 
-    <p>Although auto-sklearn could exploit information about the dataset at hand, we disabled this feature.
-        Nevertheless, we give you some information about the dataset:
+    <div class="hyParams" id="params"></div>
+    <button type="button" onclick="generate_params()">Download submission!</button>
 
-    <ul>
-        <li>binary classification, balanced classes</li>
-        <li>normalized accuracy (random: 0.0, perfect: 1.0)</li>
-        <li>259 numerical features</li>
-        <li>3140 training samples/3240 test samples</li>
-        <li>no missing values etc...</li>
-    </ul>
-    </p>
+    <div class="information">
+    <h2>Further remarks</h2>
 
-    <p>Try Beating Auto-Sklearn
+    <p>DO NOT CHANGE THE DOWNLOADED FILE. Re-upload it as it is.</p>
+
+    <p>Your configuration will be automatically evaluated with a time-limit of 5min. Although we carefully reduced the space
+        of possible configurations, it is still possible to hit the time or memory limit. Such runs will be scored with
+        -1.</p>
+
+    <p><a id="instructions" />
+    <h2>Instructions</h2>
     <ol>
         <li>Get a Codalab Id <a
                 href="https://competitions-test.codalab.org/competitions/1133?secret_key=abf5722e-5f7b-43fb-8363-cf636dde870a">here</a>
@@ -51,39 +56,27 @@
         </li>
     </ol>
     </p>
+    
+    <h2>Further links</h2>
+    <ul>
+        <li><a href="https://competitions-test.codalab.org/competitions/1133">Challenge website</a></li>
+        <li><a href="http://www.causality.inf.ethz.ch/AutoML/automl_ijcnn15.pdf">AutoML Challenge introduction paper</a></li>
+        <li><a href="https://docs.google.com/a/chalearn.org/viewer?a=v&pid=sites&srcid=Y2hhbGVhcm4ub3JnfGF1dG9tbHxneDoyYThjZjhhNzRjMzI3MTg4">AutoML Challenge analysis paper</a></li>
+        <li><a href="http://automl.github.io/auto-sklearn/stable/">auto-sklearn website</a></li>
+    </ul>
+    
+    </div>
 
-    <p>Good luck!</p>
-</div>
-<div class="hyParams" id="params"></div>
-<button type="button" onclick="generate_params()">Download submission!</button>
+    <a href="http://aad.informatik.uni-freiburg.de"><img src="aad_logo.png" alt="Machine learning for automated algorithm design logo" width="250"></img></a>
+    <a href="http://www.chalearn.org/"><img src="chalearn.png" alt="ChaLearn logo" width="250"></img></a>
 
-<h2>Further remarks</h2>
-
-<p>DO NOT CHANGE THE DOWNLOADED FILE. Re-upload it as it is.</p>
-
-<p>Your configuration will be automatically evaluated with a time-limit of 5min. Although we carefully reduced the space
-    of possible configurations, it is still possible to hit the time or memory limit. Such runs will be scored with
-    -1.</p>
-
-<h2>The pipeline</h2>
-TODO
-
-<h2>Learn more</h2>
-<ul>
-    <li>Challenge analysis paper</li>
-    <li>auto-sklearn website</li>
-</ul>
-
-<img src="aad_logo.png" alt="Machine learning for automated algorithm design logo" width="250"></img><img
-        src="chalearn.png" alt="ChaLearn logo" width="250"></img>
-
-<script src="js/libs/jquery.min.js"></script>
-<script src="js/libs/FileSaver.min.js"></script>
-<script src="js/libs/jszip.min.js"></script>
-<!--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>-->
-<script src="js/data.js"></script>
-<script src="js/data_info.js"></script>
-<script src="js/main.js"></script>
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/FileSaver.min.js"></script>
+    <script src="js/libs/jszip.min.js"></script>
+    <!--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>-->
+    <script src="js/data.js"></script>
+    <script src="js/data_info.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>
