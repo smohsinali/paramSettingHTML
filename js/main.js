@@ -73,8 +73,8 @@ function buildContinuous(obj, curr_obj) {
 
     var info_img = $('<img></img>').attr({
         src: 'info.png',
-        width: '16px',
-        'vertical-align': 'text-bottom'
+        width: '16px'
+        //'vertical-align': 'text-bottom'
     }).appendTo(info_div);
 
     info_img.on("mouseenter", function(){
@@ -89,12 +89,10 @@ function buildContinuous(obj, curr_obj) {
         }
         if(info[curr_obj] == undefined){
             //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
-            if(depOn == null) depOn='This variable does not depend on any other variable.';
             var title = 'No info available for this variable \n\n' + text;
             info_div.attr('title', title);
         }
         else{
-            if(depOn == null) depOn='This variable does not depend on any other variable.';
             var title = info[curr_obj] + '\n\n' + text;
             info_div.attr('title', title);
         }
@@ -157,7 +155,7 @@ function buildCategorical(obj, curr_obj) {
     var info_img = $('<img></img>').attr({
         src: 'info.png',
         width: '16px',
-        'vertical-align': 'text-bottom'
+        //'vertical-align': 'text-bottom'
     }).appendTo(info_div);
 
     info_img.on("mouseenter", function(){
@@ -167,17 +165,15 @@ function buildCategorical(obj, curr_obj) {
         else{
             var text = '';
             Object.keys(depOn).forEach(function(x){text = x + ' in [' + depOn[x]["values"] +']';});
-            text = 'This variable active if ' + text;
+            text = 'This variable is active if ' + text;
 
         }
         if(info[curr_obj] == undefined){
             //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
-            if(depOn == null) depOn='This variable does not depend on any other variable.';
             var title = 'No info available for this variable \n\n' + text;
             info_div.attr('title', title);
         }
         else{
-            if(depOn == null) depOn='This variable does not depend on any other variable.';
             var title = info[curr_obj] + '\n\n' + text;
             info_div.attr('title', title);
         }
