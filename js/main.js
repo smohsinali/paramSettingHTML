@@ -4,6 +4,7 @@
 "use strict";
 
 var data = data_js;
+var pipeline_components = ['classifier:__choice__', 'preprocessor:__choice__', 'rescaling:__choice__'];
 
 function buildContinuous(obj, curr_obj) {
     //console.log('curr_ob2', curr_obj);
@@ -78,22 +79,22 @@ function buildContinuous(obj, curr_obj) {
     }).appendTo(info_div);
 
     info_img.on("mouseenter", function(){
-        if(depOn == null) {
-            var text = 'This variable does not depend on any other variable.';
-        }
-        else{
-            var text = '';
-            Object.keys(depOn).forEach(function(x){text = x + ' in [' + depOn[x]["values"] +']';});
-            text = 'This variable active if ' + text;
-
-        }
+        //if(depOn == null) {
+        //    var text = 'This variable does not depend on any other variable.';
+        //}
+        //else{
+        //    var text = '';
+        //    Object.keys(depOn).forEach(function(x){text = x + ' in [' + depOn[x]["values"] +']';});
+        //    text = 'This variable active if ' + text;
+        //
+        //}
         if(info[curr_obj] == undefined){
             //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
-            var title = 'No info available for this variable \n\n' + text;
+            var title = 'No info available for this variable \n\n'; //+ text;
             info_div.attr('title', title);
         }
         else{
-            var title = info[curr_obj] + '\n\n' + text;
+            var title = info[curr_obj] + '\n\n'; // + text;
             info_div.attr('title', title);
         }
     });
@@ -119,6 +120,9 @@ function buildCategorical(obj, curr_obj) {
     //console.log(curr_obj, "affects", affected);
 
     var elem = $("<div class='varaible'></div>");
+    if(pipeline_components.indexOf(curr_obj) != -1){
+        elem.prepend($("<h2 id='break'>" + variables[curr_obj] + "</h2>"));
+    }
     var name_div = $("<div class='varName'>" + variables[curr_obj] + "</div>").css({"display": "inline-block"});
     elem.append(name_div);
 
@@ -159,22 +163,22 @@ function buildCategorical(obj, curr_obj) {
     }).appendTo(info_div);
 
     info_img.on("mouseenter", function(){
-        if(depOn == null) {
-            var text = 'This variable does not depend on any other variable.';
-        }
-        else{
-            var text = '';
-            Object.keys(depOn).forEach(function(x){text = x + ' in [' + depOn[x]["values"] +']';});
-            text = 'This variable is active if ' + text;
-
-        }
+        //if(depOn == null) {
+        //    var text = 'This variable does not depend on any other variable.';
+        //}
+        //else{
+        //    var text = '';
+        //    Object.keys(depOn).forEach(function(x){text = x + ' in [' + depOn[x]["values"] +']';});
+        //    text = 'This variable is active if ' + text;
+        //
+        //}
         if(info[curr_obj] == undefined){
             //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
-            var title = 'No info available for this variable \n\n' + text;
+            var title = 'No info available for this variable \n\n';// + text;
             info_div.attr('title', title);
         }
         else{
-            var title = info[curr_obj] + '\n\n' + text;
+            var title = info[curr_obj] + '\n\n';// + text;
             info_div.attr('title', title);
         }
     });

@@ -2,21 +2,20 @@
     display: table;
     /*width: 100%;*/
     /*border: 1px solid #999999;*/
-    padding: 12px 20px;
+
+    padding: 24px 24px;
+    padding-top: 0px;
+
+    background-color: ghostwhite;
 
     /*margin-left:200px;*/
 }
 
 .varaible {
-    /* border-style: solid; */
-    /* padding: 5px; */
-    height: 24px;
-    /* border: 1px #ffffff; */
-    /* border-color: #b3afaf;*/
-    padding: 3px 10px;
-    background-color: ghostwhite;
+    /*height: 24px;*/
+    padding: 6px 10px;
+
     width:660px;
-    /* border-width: thin; */
 }
 
 .varName {
@@ -51,6 +50,17 @@
 
 button{
     margin-top: 10px;
+    margin-left: 20px;
+    padding: .40rem 1.0rem;
+    color: #000000;
+    background-color: #fff;
+    font-size: .9rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 12rem;
+    border: .2rem solid #32464a;
+    -webkit-transition: color .3s,border .3s;
+    transition: color .3s,border .3s;
     /*margin-left: 200px;*/
 }
 
@@ -65,7 +75,9 @@ button{
     /*margin-left: 200px;*/
     max-width: 500px;
 }
-
+.information2{
+    height: 800px;
+}
 .information2 p{
     margin-left: 20px;
     max-width: 650px;
@@ -76,6 +88,7 @@ button{
 .information2    li{
     /*margin-left: 200px;*/
     max-width: 650px;
+
 }
 
 body{
@@ -91,12 +104,26 @@ body{
     /*margin-right: 50px;*/
 }
 
+.footer img{
+    width:  200px;
+    float: right;
+}
+.header img{
+    width:110px;
+    float: right;
+}
+.header{
+
+    margin-bottom: 0px;
+    margin-right: 60px;
+}
 
 h1 {
     /*font-family: Calibri, "Helvetica", san-serif;*/
     line-height: 1.5em;
     color: black;
     font-size: 24px;
+    /*margin-top: 50px;*/
 }
 
 h2 {
@@ -104,6 +131,7 @@ h2 {
     line-height: 1.5em;
     color: black;
     font-size: 20px;
+
 
 }
 h1:after,h2:after{
