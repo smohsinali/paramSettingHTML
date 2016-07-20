@@ -13,6 +13,7 @@
     border: 1px solid darkgrey;
     padding: 3px 10px;
     background-color: ghostwhite;
+    width:660px;
 }
 
 .varName {
@@ -23,14 +24,15 @@
 
 .varInfo div {
     vertical-align: top;
+    margin-left: 5px;
     /*margin-left: 10px;*/
 }
 
 .varSelect select{
-    width: 220px;
+    width: 200px;
 }
 .varSelect input{
-    width: 220px;
+    width: 170px;
 }
 
 /*button{*/
@@ -40,7 +42,7 @@
 
 p{
     /*margin-left: 200px;*/
-    max-width: 500px;
+    max-width: 400px;
     text-align: justify;
 
 }
@@ -51,9 +53,16 @@ li{
 }
 body{
     margin-left: 200px;
-    max-width: 780px;
+    width: 780px;
 }
 
 .sam{
     float:  right;
+    height: 300px;
+    /*width: 240px;*/
+    margin-right: 50px;
+}
+
+.information{
+    height: 400px;
 }

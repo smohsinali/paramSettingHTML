@@ -11,7 +11,7 @@ function buildContinuous(obj, curr_obj) {
     //console.log("building continuous var", curr_obj, "depon", depOn);
 
     var elem = $("<div class='varaible'></div>");
-    var name_div = $("<div class='varName'>" + curr_obj + "</div>").css({"display": "inline-block"});
+    var name_div = $("<div class='varName'>" + variables[curr_obj] + "</div>").css({"display": "inline-block"});
     elem.append(name_div);
 
     var ranges_div = $("<div class='varSelect'></div>").css({"display": "inline-block"});
@@ -121,7 +121,7 @@ function buildCategorical(obj, curr_obj) {
     //console.log(curr_obj, "affects", affected);
 
     var elem = $("<div class='varaible'></div>");
-    var name_div = $("<div class='varName'>" + curr_obj + "</div>").css({"display": "inline-block"});
+    var name_div = $("<div class='varName'>" + variables[curr_obj] + "</div>").css({"display": "inline-block"});
     elem.append(name_div);
 
     var vals_div = $("<div class='varSelect'></div>").css({"display": "inline-block"});
@@ -341,7 +341,7 @@ function findVars(obj) {
 }
 
 var seen = findVars(data);
-
+console.log(seen);
 
 function generate_params() {
     //var seen = findVars(data);
