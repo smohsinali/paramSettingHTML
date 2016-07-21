@@ -90,11 +90,11 @@ function buildContinuous(obj, curr_obj) {
         //}
         if(info[curr_obj] == undefined){
             //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
-            var title = 'No info available for this variable \n\n'; //+ text;
+            var title = 'No info available for this variable'; //+ text;
             info_div.attr('title', title);
         }
         else{
-            var title = info[curr_obj] + '\n\n'; // + text;
+            var title = info[curr_obj];// + '\n\n' + text;
             info_div.attr('title', title);
         }
     });
@@ -174,11 +174,11 @@ function buildCategorical(obj, curr_obj) {
         //}
         if(info[curr_obj] == undefined){
             //var span = $('<span>"No info available for this variable"</span>').appendTo(info_div);
-            var title = 'No info available for this variable \n\n';// + text;
+            var title = 'No info available for this variable';// + text;
             info_div.attr('title', title);
         }
         else{
-            var title = info[curr_obj] + '\n\n';// + text;
+            var title = info[curr_obj]; //+ '\n\n' + text;
             info_div.attr('title', title);
         }
     });
