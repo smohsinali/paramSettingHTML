@@ -53,7 +53,7 @@ var variables = {
     "classifier:liblinear_svc:C":"liblinear_svc:C",
     "classifier:bernoulli_nb:fit_prior":"bernoulli_nb:fit_prior",
     "classifier:xgradient_boosting:learning_rate":"xgradient_boosting:learning_rate",
-    "classifier:k_nearest_neighbors:n_neighbors:":"k_nearest_neighbors:n_neighbors",
+    "classifier:k_nearest_neighbors:n_neighbors":"k_nearest_neighbors:n_neighbors",
     "classifier:random_forest:bootstrap":"random_forest:bootstrap",
     "classifier:sgd:eta0":"sgd:eta0",
     "classifier:xgradient_boosting:max_depth":"xgradient_boosting:max_depth",
