@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--<link rel="shortcut icon" href="/favicon.ico" />-->
+
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/index.css"/>
-    <!--<link rel="stylesheet" href="css/jquery-ui.css"/>-->
 
     <title>Beat auto-sklearn</title>
 </head>
@@ -11,8 +12,11 @@
 
 
     <div class="information">
-        <a class='header' href="http://aad.informatik.uni-freiburg.de"><img src="aad_logo.png" alt="Machine learning for automated algorithm design logo"></img></a>
+        <a class='header' href="http://aad.informatik.uni-freiburg.de"><img src="aad_logo.png" alt="Machine learning for automated algorithm design logo" width="110px"></img></a>
+        <a class='header' href="http://www.chalearn.org/"><img src="chalearn.png" alt="ChaLearn logo" width="150px" style="float: right;margin-right: 30px"></img></a>
         <h1>Beat auto-sklearn</h1>
+        <!--<h1><img src="AutoML_sklearn_4.jpg" alt="Beat auto-sklearn" /></h1>-->
+
 
         <img class='sam' src="unclesam.jpg" alt="Uncle Sam points at you and says: I want you to beat auto-sklearn"></img>
 
@@ -29,13 +33,21 @@
         <p>Good luck!</p>
     </div>
 
-    <h2 style="margin-top: 80px">Your Machine Learning Pipeline Configuration</h2>
+    <h3 style="margin-top: 30px">Your Machine Learning Pipeline Configuration</h3>
 
     <div class="hyParams" id="params"></div>
-    <button type="button" onclick="generate_params()">Download submission!</button>
+
+
+    <a class="btnCL" target="_blank" href="https://competitions-test.codalab.org/competitions/1133?secret_key=abf5722e-5f7b-43fb-8363-cf636dde870a#participate-submit_results">Submit Configuration</a>
+
+    <button class="btnSubmit" type="button" onclick="generate_params()">Download submission!</button>
+    <div></div>
+
+    <a class="btnCL" target="_blank" href="https://competitions-test.codalab.org/competitions/1133?secret_key=abf5722e-5f7b-43fb-8363-cf636dde870a#results">View Leaderboard</a>
+
 
     <div class="information2">
-    <h2>Further remarks</h2>
+    <h2 style="margin-top: 50px">Further remarks</h2>
 
     <p>DO NOT CHANGE THE DOWNLOADED FILE. Re-upload it as it is.</p>
 
@@ -77,7 +89,6 @@
 
 
     <h2>Further links</h2>
-        <!--<a class='footer' href="http://www.chalearn.org/"><img src="chalearn.png" alt="ChaLearn logo" width="250px"></img></a>-->
     <ul>
         <li><a href="https://competitions-test.codalab.org/competitions/1133">Challenge website</a></li>
         <li><a href="http://www.causality.inf.ethz.ch/AutoML/automl_ijcnn15.pdf">AutoML Challenge introduction paper</a></li>
@@ -87,17 +98,15 @@
 
 
         <h2>Organizers</h2>
-        <!--<a class='footer' href="http://www.chalearn.org/"><img src="chalearn.png" alt="ChaLearn logo" width="250px"></img></a>-->
+        <a class='footer' href="http://aad.informatik.uni-freiburg.de"><img src="aad_logo.png" alt="Machine learning for automated algorithm design logo" width="150px" style="float: right;"></img></a>
+        <a class='footer' href="http://www.chalearn.org/"><img src="chalearn.png" alt="ChaLearn logo" width="220px" style="float: right;margin-right: 30px"></img></a>
+
         <ul>
             <li>Isabelle Guyon</li>
             <li>Katharina Eggensperger</li>
             <li>Matthias Feurer</li>
             <li>Syed Mohsin Ali</li>
         </ul>
-        <a class='footer' href="http://aad.informatik.uni-freiburg.de"><img src="aad_logo.png" alt="Machine learning for automated algorithm design logo" width="150px" style="float: right;"></img></a>
-        <a class='footer' href="http://www.chalearn.org/"><img src="chalearn.png" alt="ChaLearn logo" width="220px" style="float: right;margin-right: 30px"></img></a>
-        <!--<a class='footer' href="http://aad.informatik.uni-freiburg.de"><img src="aad_logo.png" alt="Machine learning for automated algorithm design logo" width="150px"></img></a>-->
-
     </div>
 
 

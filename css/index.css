@@ -4,11 +4,11 @@
     /*border: 1px solid #999999;*/
 
     padding: 24px 24px;
-    padding-top: 0px;
+    padding-top: 10px;
 
     background-color: ghostwhite;
 
-    /*margin-left:200px;*/
+    margin-left:20px;
 }
 
 .varaible {
@@ -48,8 +48,8 @@
     margin-left: 3px;
 }
 
-button{
-    margin-top: 10px;
+.btnSubmit{
+    margin-top: 20px;
     margin-left: 20px;
     padding: .40rem 1.0rem;
     color: #000000;
@@ -63,43 +63,54 @@ button{
     transition: color .3s,border .3s;
     /*margin-left: 200px;*/
 }
+.btnCL{
+    float: right;
+    margin-top: 20px;
+    /*margin-left: 20px;*/
+    margin-right: 30px;
+    padding: .40rem 1.0rem;
+    color: #000000;
+    background-color: #fff;
+    font-size: .9rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    /*border-radius: 12rem;*/
+    border: .2rem solid #32464a;
+    -webkit-transition: color .3s,border .3s;
+    transition: color .3s,border .3s;
+    text-decoration:none
+    /*margin-left: 200px;*/;
+}
+
 
 .information p{
     margin-left: 20px;
-    max-width: 450px;
+    max-width: 560px;
     text-align: justify;
 
 }
 
-.information    li{
-    /*margin-left: 200px;*/
-    max-width: 500px;
-}
 .information2{
     height: 800px;
+
 }
-.information2 p{
+.information2 p,li{
+
     margin-left: 20px;
-    max-width: 650px;
     text-align: justify;
-
-}
-
-.information2    li{
-    /*margin-left: 200px;*/
-    max-width: 650px;
+    max-width: 700px;
 
 }
 
 body{
     font-family: Calibri, "Helvetica", san-serif;
-    margin-left: 200px;
-    width: 730px;
+    margin-right: 20px;
+    width: 780px;
 }
 
 .sam{
     float:  right;
-    height: 300px;
+    height: 240px;
     /*width: 240px;*/
     /*margin-right: 50px;*/
 }
@@ -109,7 +120,7 @@ body{
     /*float: right;*/
 }
 .header img{
-    width:110px;
+    /*width:110px;*/
     float: right;
 }
 .header{
@@ -121,7 +132,7 @@ body{
 h1 {
     /*font-family: Calibri, "Helvetica", san-serif;*/
     line-height: 1.5em;
-    color: black;
+    /*color: black;*/
     font-size: 24px;
     /*margin-top: 50px;*/
 }
@@ -134,6 +145,17 @@ h2 {
 
 
 }
+
+h3 {
+    /*font-family: Calibri, "Helvetica", san-serif;*/
+    line-height: 1.5em;
+    color: black;
+    font-size: 20px;
+
+
+}
+
+
 h1:after,h2:after{
     content:' ';
     display:block;
